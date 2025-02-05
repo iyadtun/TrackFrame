@@ -1,0 +1,202 @@
+
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TrackerFrame</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,300;1,300&display=swap" rel="stylesheet">
+<style>
+        /* General Styles */
+        body {
+            font-family: 'Roboto Condensed', sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+ 
+        /* Header Styles */
+        header {
+            text-align: center; /* Center the header content */
+            padding: 20px;
+            background-color: #282c34;
+            color: white;
+        }
+ 
+        header h1 {
+            margin: 0;
+            font-size: 2.5em;
+        }
+ 
+        header p {
+            font-size: 1.2em;
+        }
+ 
+        .rotation {
+            margin-top: 10px;
+            font-size: 1.5em;
+            color: #61dafb;
+            cursor: pointer; /* Make it look interactive */
+            text-decoration: underline;
+            transition: color 0.3s ease;
+        }
+ 
+        .rotation:hover {
+            color: #21a1f1;
+        }
+ 
+        /* Logo Styles */
+        .logo {
+            max-width: 60px;
+            height: auto;
+            margin-bottom: 10px;
+        }
+ 
+        /* Navigation Bar Styles */
+        nav {
+            text-align: center;
+            margin: 20px 0;
+        }
+ 
+        nav ul {
+            list-style: none;
+            padding: 0;
+        }
+ 
+        nav li {
+            display: inline-block;
+            margin: 0 15px;
+        }
+ 
+        nav a {
+            text-decoration: none;
+            padding: 10px 20px;
+            border: 2px solid #282c34;
+            border-radius: 5px;
+            color: #282c34;
+            background-color: white;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+ 
+        nav a:hover {
+            background-color: #282c34;
+            color: white;
+        }
+ 
+        /* Main Content Styles */
+        main {
+            text-align: center;
+            padding: 20px;
+        }
+ 
+        main p {
+            font-size: 1.2em;
+        }
+ 
+        /* Button Styles */
+        .button {
+            display: inline-block;
+            margin: 20px auto;
+            padding: 10px 20px;
+            font-size: 1em;
+            font-weight: bold;
+            color: white;
+            background-color: #61dafb;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+ 
+        .button:hover {
+            background-color: #21a1f1;
+        }
+ 
+        /* Footer Styles */
+        footer {
+            text-align: center;
+            padding: 15px;
+            background-color: #282c34;
+            color: white;
+        }
+ 
+        footer p {
+            margin: 0;
+            font-size: 0.9em;
+        }
+</style>
+</head>
+<body>
+<header>
+<img src="untitled133.jpg" alt="TrackerFrame Logo" class="logo">
+<div>
+<h1>TrackerFrame</h1>
+<p>A Warframe tracker for live rotations and events</p>
+<h2 class="rotation" onclick=<div>
+    <span>Cetus Rotation: </span>
+    <span class="timer" id="timer_4">01 hr. 00 min. 00 sec.</span>
+  </div>
+  <div id="dayNightStatus">Night</div>
+  
+  <script>
+    // Function to format the timer as hr. min. sec.
+    function formatTime(ms) {
+      const hours = Math.floor(ms / 3600000);
+      const minutes = Math.floor((ms % 3600000) / 60000);
+      const seconds = Math.floor((ms % 60000) / 1000);
+      return `${String(hours).padStart(2, '0')} hr. ${String(minutes).padStart(2, '0')} min. ${String(seconds).padStart(2, '0')} sec.`;
+    }
+  
+    // Set initial timer to 1 hour (3600000 ms)
+    let startTime = Date.now();
+    const resetInterval = 1 * 60 * 60 * 1000;  // 1 hour in milliseconds
+  
+    // Function to update the timer
+    function updateTimer() {
+      const elapsedTime = Date.now() - startTime;
+      const remainingTime = resetInterval - (elapsedTime % resetInterval);
+  
+      // Update the displayed timer
+      document.getElementById('timer_4').textContent = formatTime(remainingTime);
+  
+      // Check if the timer has reached 0 and change the day/night status
+      if (remainingTime <= 0) {
+        startTime = Date.now(); // Reset start time
+        const dayNightElement = document.getElementById('dayNightStatus');
+        // Toggle between Day and Night text
+        if (dayNightElement.textContent === 'Night') {
+          dayNightElement.textContent = 'Day';
+        } else {
+          dayNightElement.textContent = 'Night';
+        }
+      }
+    }
+  
+    // Call the updateTimer function every 1000 ms (1 second)
+    setInterval(updateTimer, 1000);
+  </script>
+<main>
+    <h2 class="rotation" onclick=<div></div>
+</header>
+<main>
+<p>All info has been taken from the live game or the Warframe Wiki.</p>
+<nav>
+<ul>
+<li><a href="index.html">Home</a></li>
+<li><a href="contact.html">Contact Us!</a></li>
+<li><a href="https://warframe.fandom.com/wiki/WARFRAME_Wiki" target="_blank">Warframe Wiki</a></li>
+<li><a href="learnmore.html">learn more</a></li>
+</ul>
+</nav>
+</main>
+<footer>
+<p>Copyright &copy; Iyad Abdulhleem</p>
+</footer>
+</body>
+</html>
+
